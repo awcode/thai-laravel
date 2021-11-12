@@ -5,6 +5,7 @@ return [
     'whereinth_api_key' => env('WHEREIN_API_KEY', ''),
     'whereinth_api_secret' => env('WHEREIN_API_SECRET', ''),
     
+    'format_errors' => env('FORMAT_ERRORS', 'silent'),//silent, strict, log
     'format_precision_small' => env('FORMAT_PRECISION_S', 0),
     'format_precision_large' => env('FORMAT_PRECISION_L', 1)
 ];
