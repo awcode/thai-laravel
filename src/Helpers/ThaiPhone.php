@@ -58,6 +58,17 @@ class ThaiPhone
         return $this;
     }
     
+    
+    public function isMobile(){
+        return $this->is_mobile ? true : false;
+    }
+    public function isLandline(){
+        return $this->is_landline ? true : false;
+    }
+    public function isShortcode(){
+        return $this->is_shortcode ? true : false;
+    }
+    
     public function toInternational(){
         $phone = $this->value;//Already filtered to numeric without country code
         if(!$phone){return '';}
