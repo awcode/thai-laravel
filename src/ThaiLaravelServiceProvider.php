@@ -4,7 +4,6 @@ namespace Awcode\ThaiLaravel;
 
 use Illuminate\Support\ServiceProvider;
 use Awcode\ThaiLaravel\Commands\InstallCommand;
-use Awcode\ThaiLaravel\ThaiLaravel;
 
 class ThaiLaravelServiceProvider extends ServiceProvider
 {
@@ -16,7 +15,7 @@ class ThaiLaravelServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('thai-laravel',function(){
-            return new ThaiLaravel();
+            return new \Awcode\ThaiLaravel\ThaiLaravel();
         });
     }
 
