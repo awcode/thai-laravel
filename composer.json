@@ -1,0 +1,34 @@
+{
+    "name": "awcode/thai-laravel" ,
+    "type": "library",
+    "description": "A helper package for deploying laravel apps in Thailand" ,
+    "keywords": [
+        "Thailand",  "Thai Address",  "Thai Postcode",  "Thai Province", "Thai Fonts"
+    ],
+    "require": {
+        "php": "^7.1.3|^8.0",
+        "illuminate/support": "~5.8.0|^6.0|^7.0|^8.0"
+    },
+    "autoload": {
+        "psr-4": { "Awcode\\ThaiLaravel\\" : "src/" }
+    },
+    "authors": [
+        {
+            "name": "awcode",
+            "homepage": "https://awcode.com"
+        },{
+            "name": "Mark Walker"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Awcode\\ThaiLaravel\\ThaiLaravelServiceProvider"
+            ],
+            "aliases": {
+                "ThaiLaravel": "Awcode\\ThaiLaravel\\Facade"
+            }
+        }
+    },
+    "license": "MIT"
+}
