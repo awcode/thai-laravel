@@ -45,10 +45,16 @@ class ThaiFormat
         }
         
         $this->new_format = $to_format;
-        $this->new_value = round(($rate * $this->orig_value), $precision);
+        
+        if($this->isYearFormat()){//Years Add
+            $this->new_value = $this->orig_value + $rate;
+        }else{//Others multiply
+            $this->new_value = round(($rate * $this->orig_value), $precision);
+        }
         
         return $this->new_value;
     }
+    
     public function getRate($orig_format, $to_format){
         if(isset($this->conversions[$orig_format.'_'.$to_format])){
             return $this->conversions[$orig_format.'_'.$to_format];
@@ -65,9 +71,26 @@ class ThaiFormat
         return false;
     }
     
+    protected isYearFormat(){
+        if($format->orig_format == 'yearth' || $format->orig_format == 'yearint'){
+            return true;
+        }
+        return false;
+    }
+    
     protected $conversions = [
-        'rai_sqm' => 1600,  'sqm_rai' => (1/1600),
-        'wah_sqm' => 4,     'sqm_wah' => (1/4),
+        // 1 Rai = 400 Wah
+        'rai_wah' => 400,           'wah_rai' => (1/400),
+        // 1 Rai = 1600 sqm
+        'rai_sqm' => 1600,          'sqm_rai' => (1/1600),
+        'rai_km2' => 0.0016,        'km2_rai' => (1/0.0016),
+        'rai_ft2' => 17222.3,       'ft2_rai' => (1/17222.3),
+        // 1 Wah = 4 sqm
+        'wah_sqm' => 4,             'sqm_wah' => (1/4),
+        'wah_km2' => 0.000004,      'wah_rai' => (1/0.000004),
+        'wah_ft2' => 43.0556,       'ft2_wah' => (1/43.0556),
+        // Thai Buddhist years
+        'yearth_yearint' => -543,   'yearint_yearth' => 543
     ];
     
     protected $precision_large = [//large measures, have seperate precision setting to smaller ones
