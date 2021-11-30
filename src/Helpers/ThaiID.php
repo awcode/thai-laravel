@@ -11,6 +11,10 @@ class ThaiID
     protected $is_national;
     protected $is_migrant;//can we separate this??
     protected $is_foreigner;
+    
+    protected $min_birth_year_int;
+    protected $max_birth_year_int;
+    protected $oldest_recorded_lifespan = 123;
 
     public function __toString()
     {
@@ -58,28 +62,47 @@ class ThaiID
 
         if($digit == 1){//1: Thai nationals born after Jan 1st 1984
           $this->is_national = true;
+          $this->min_birth_year_int = 1984;
+          $this->max_birth_year_int = date('Y');
           return true;
         }elseif($digit == 2){//2: Thai nationals born after Jan 1st 1984, late registered
           $this->is_national = true;
+          $this->min_birth_year_int = 1984;
+          $this->max_birth_year_int = date('Y');
           return true;
         }elseif($digit == 3){//3: Thai nationals registered in May 31 1981 census
           $this->is_national = true;
+          $this->min_birth_year_int = 1984 - $this->oldest_recorded_lifespan;
+          $this->max_birth_year_int = 1984;
           return true;
         }elseif($digit == 4){//4: Thai nationals registered in May 31 1981 census, without previous id number
           $this->is_national = true;
+          $this->min_birth_year_int = 1984 - $this->oldest_recorded_lifespan;
+          $this->max_birth_year_int = 1984;
           return true;
         }elseif($digit == 5){//5: Thai nationals added to 1981 census late due to error
           $this->is_national = true;
+          $this->min_birth_year_int = 1984 - $this->oldest_recorded_lifespan;
+          $this->max_birth_year_int = 1984;
           return true;
         }elseif($digit == 6){//6: Foreigners with intent to stay temporarily, or who entered illegaly
           $this->is_foreigner = true;
+          $this->min_birth_year_int = 1984 - $this->oldest_recorded_lifespan;
+          $this->max_birth_year_int = date('Y');
           return true;
         }elseif($digit == 7){//7: Children of #6
           $this->is_foreigner = true;
+          $this->min_birth_year_int = 1984 - $this->oldest_recorded_lifespan;
+          $this->max_birth_year_int = date('Y');
           return true;
         }elseif($digit == 8){//8: Former aliens converted to Thai after 1984
           $this->is_national = true;
+          $this->min_birth_year_int = 1984 - $this->oldest_recorded_lifespan;
+          $this->max_birth_year_int = date('Y');
           return true;
+        }elseif($digit == 0){
+            //TODO - needs review, Not found on cards of Thai nationals but may be found in the other issued identity cards. File an issue on github with examples if come across cards starting with a 0
+            return false;
         }
         return false;
     }
@@ -226,4 +249,19 @@ class ThaiID
         if(!$this->validated){$this->validate();}
         return $this->is_foreigner ? true : false;
     }
+    
+    public function minBirthYearInt(){
+        return $this->min_birth_year_int;
+    }
+    public function maxBirthYearInt(){
+        return $this->max_birth_year_int;
+    }
+    public function minBirthYearTh(){
+        return $this->minBirthYearInt() ? $this->minBirthYearInt() + 543 : null;
+    }
+    public function maxBirthYearTh(){
+        return $this->maxBirthYearInt() ? $this->maxBirthYearInt() + 543 : null;
+    }
+    
+    
 }
