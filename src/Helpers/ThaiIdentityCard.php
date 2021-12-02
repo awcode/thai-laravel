@@ -56,13 +56,13 @@ class ThaiIdentityCard
         return true;
     }
 
-    protected function checkLength($id){
+    public function checkLength($id){
         if(strlen($id) == 13){
             return true;
         }
         return false;
     }
-    protected function checkFirstDigit($id){
+    public function checkFirstDigit($id){
         $digit = $id[0];
 
         if($digit == 1){//1: Thai nationals born after Jan 1st 1984
@@ -111,7 +111,7 @@ class ThaiIdentityCard
         }
         return false;
     }
-    protected function check23Digits($id){
+    public function check23Digits($id){
         //digits 23 refer to province at time of applying for ID card
         $digits23 = $id[1].$id[2];
 
@@ -126,11 +126,11 @@ class ThaiIdentityCard
           80, 81, 82, 83, 84, 85, 86,
           90, 91, 92, 93, 94, 95, 96];
         if(in_array($digits23, $allowed)){
-          return true;
+          return $digits23;
         }
         return false;
     }
-    protected function check45Digits($id){
+    public function check45Digits($id){
         //digits 45 refer to amphur at time of applying for ID card
         $digits23 = $id[1].$id[2];
         $digits45 = $id[3].$id[4];
@@ -215,7 +215,7 @@ class ThaiIdentityCard
 
         return false;
     }
-    protected function checksum($id){
+    public function checksum($id){
         $checksum = $id[12];
         $add = $id[0] * 13;
         $add += $id[1] * 12;
