@@ -35,6 +35,11 @@ class ThaiIdentityCard
 
         return $id;
     }
+    
+    public function getValue($raw=false){
+        if($raw){ return $this->raw_value;}
+        return $this->value;
+    }
 
 
     public function validate(){
