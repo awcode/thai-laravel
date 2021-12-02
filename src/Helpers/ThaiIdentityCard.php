@@ -46,11 +46,11 @@ class ThaiIdentityCard
         $id = $this->value;
         if(!$id){return false;}
 
-        if(!$this->checkLength($id)){ return false;}
-        if(!$this->checkFirstDigit($id)){ return false;}
-        if(!$this->check23Digits($id)){ return false;}
-        if(!$this->check45Digits($id)){ return false;}//TODO, config for this to be softfail, new options may become available later
-        if(!$this->checksum($id)){ return false;}
+        if(!$this->checkLength()){ return false;}
+        if(!$this->checkFirstDigit()){ return false;}
+        if(!$this->check23Digits()){ return false;}
+        if(!$this->check45Digits()){ return false;}//TODO, config for this to be softfail, new options may become available later
+        if(!$this->checksum()){ return false;}
 
         $this->validated = true;
         return true;
@@ -62,7 +62,8 @@ class ThaiIdentityCard
         }
         return false;
     }
-    public function checkFirstDigit($id){
+    public function checkFirstDigit($id = false){
+        if(!$id){$id = $this>value;
         $digit = $id[0];
 
         if($digit == 1){//1: Thai nationals born after Jan 1st 1984
@@ -111,7 +112,8 @@ class ThaiIdentityCard
         }
         return false;
     }
-    public function check23Digits($id){
+    public function check23Digits($id = false){
+        if(!$id){$id = $this>value;
         //digits 23 refer to province at time of applying for ID card
         $digits23 = $id[1].$id[2];
 
@@ -130,7 +132,8 @@ class ThaiIdentityCard
         }
         return false;
     }
-    public function check45Digits($id){
+    public function check45Digits($id = false){
+        if(!$id){$id = $this>value;
         //digits 45 refer to amphur at time of applying for ID card
         $digits23 = $id[1].$id[2];
         $digits45 = $id[3].$id[4];
@@ -215,7 +218,8 @@ class ThaiIdentityCard
 
         return false;
     }
-    public function checksum($id){
+    public function checksum($id = false){
+        if(!$id){$id = $this>value;
         $checksum = $id[12];
         $add = $id[0] * 13;
         $add += $id[1] * 12;
