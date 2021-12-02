@@ -2,7 +2,7 @@
 namespace Awcode\ThaiLaravel\Helpers;
 
 
-class ThaiID
+class ThaiIdentityCard
 {
     protected $raw_value;
     protected $value;
@@ -27,7 +27,7 @@ class ThaiID
     }
 
     static function makeCard($id_number){
-        $id = new ThaiID;
+        $id = new ThaiIdentityCard;
         $id->raw_value = $id_number;
 
         $id_number = preg_replace('/[^0-9]/i', '', $id_number);
