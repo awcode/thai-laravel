@@ -1,6 +1,7 @@
 <?php
 namespace Awcode\ThaiLaravel\Helpers;
 
+use Spatie\SchemaOrg\Schema;
 
 class ThaiIdentityCard
 {
