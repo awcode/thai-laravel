@@ -5,6 +5,7 @@ use Awcode\ThaiLaravel\Helpers\ThaiAddress;
 use Awcode\ThaiLaravel\Helpers\ThaiFormat;
 use Awcode\ThaiLaravel\Helpers\ThaiPhone;
 use Awcode\ThaiLaravel\Helpers\ThaiIdentityCard;
+use Awcode\ThaiLaravel\Helpers\ThaiNumerals;
 
 class ThaiLaravel
 {
@@ -27,5 +28,13 @@ class ThaiLaravel
 
     static function convert($from_format, $to_format, $value){
          return ThaiFormat::makeFormat($from_format, $value)->to($to_format);
+    }
+    
+    static function toThaiNumerals( $value){
+         return ThaiNumerals::toThai($value);
+    }
+    
+    static function toArabicNumerals( $value){
+         return ThaiNumerals::toArabic($value);
     }
 }

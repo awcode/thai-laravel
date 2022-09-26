@@ -44,6 +44,9 @@ Convert Thai Years to Gregorian Calendar
 
 Convert Rai/Wah (Land unit measurements) to other common formats
 
+## Thai Numerals Helper
+Easily switch numbers between Arabic and Thai numerals
+
 ## Thai Fonts
 Font packages to help use Thai Text
 
