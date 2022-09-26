@@ -37,12 +37,12 @@ Connector to the Where.in.th commercial database for locating individual address
 ## Thai Validation
 Validate a phone number is correct format for Thailand
 
-Validate a Thai ID card is in correct format
+Validate a [Thai ID card](https://thailandformats.com/idcards) is in correct format
 
 ## Thai Format Helpers
-Convert Thai Years to Gregorian Calendar
+Convert [Thai Years](https://thailandformats.com/dates) to Gregorian Calendar
 
-Convert Rai/Wah (Land unit measurements) to other common formats
+Convert [Rai/Wah](https://thailandformats.com/areas) (Land unit measurements) to other common formats
 
 ## Thai Numerals Helper
 Easily switch numbers between Arabic and Thai numerals
