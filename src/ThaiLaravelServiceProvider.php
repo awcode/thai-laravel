@@ -3,6 +3,7 @@
 namespace Awcode\ThaiLaravel;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 use Awcode\ThaiLaravel\Commands\InstallCommand;
 
 class ThaiLaravelServiceProvider extends ServiceProvider
