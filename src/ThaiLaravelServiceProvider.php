@@ -3,6 +3,7 @@
 namespace Awcode\ThaiLaravel;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 use Awcode\ThaiLaravel\Commands\InstallCommand;
 
 class ThaiLaravelServiceProvider extends ServiceProvider
@@ -16,6 +17,37 @@ class ThaiLaravelServiceProvider extends ServiceProvider
     {
         $this->app->bind('thai-laravel',function(){
             return new \Awcode\ThaiLaravel\ThaiLaravel();
+        });
+        
+        Blade::directive('LaravelDompdfThaiFont', function () {
+            return <<<EOT
+<style>
+@font-face {
+    font-family: 'THSarabunNew';
+    font-style: normal;
+    font-weight: normal;
+    src: url("{{ public_path('fonts/THSarabunNew.ttf') }}") format('truetype');
+}
+@font-face {
+    font-family: 'THSarabunNew';
+    font-style: normal;
+    font-weight: bold;
+    src: url("{{ public_path('fonts/THSarabunNew Bold.ttf') }}") format('truetype');
+}
+@font-face {
+    font-family: 'THSarabunNew';
+    font-style: italic;
+    font-weight: normal;
+    src: url("{{ public_path('fonts/THSarabunNew Italic.ttf') }}") format('truetype');
+}
+@font-face {
+    font-family: 'THSarabunNew';
+    font-style: italic;
+    font-weight: bold;
+    src: url("{{ public_path('fonts/THSarabunNew BoldItalic.ttf') }}") format('truetype');
+}
+</style>
+EOT;
         });
     }
 
