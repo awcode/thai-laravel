@@ -66,7 +66,11 @@ EOT;
             __DIR__.'/../fonts' => public_path('th-fonts'),
         ], 'fonts');
         
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->publishes([
+            __DIR__.'/../database/migrations' => database_path('migrations'),
+        ], 'migrations');
+        
+        //$this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         
         if ($this->app->runningInConsole()) {
             $this->commands([
